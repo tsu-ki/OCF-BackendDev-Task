@@ -1,0 +1,24 @@
+[global]
+# Configure Streamlit for better user experience
+dataFrameSerialization = "legacy"
+
+[server]
+# Server configuration
+headless = false
+port = 8501
+enableCORS = false
+enableWebsocketCompression = false
+
+[browser]
+# Browser configuration
+gatherUsageStats = false
+serverAddress = "localhost"
+serverPort = 8501
+
+[theme]
+# UI theme configuration
+primaryColor = "#1f77b4"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+font = "sans serif"

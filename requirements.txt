@@ -1,0 +1,7 @@
+requests
+pandas
+matplotlib 
+python-dotenv
+streamlit
+plotly
+streamlit-aggrid

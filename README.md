@@ -1,13 +1,32 @@
 # Elexon Wind & Solar Generation Pipeline
 
-## Overview
-A comprehensive Python toolkit for downloading, analyzing, and visualizing historic UK solar and wind generation data from the Elexon BMRS API. Features both command-line interface and modern web dashboard built with Streamlit.
+## Purpose
+
+This repository was prepared as part of my technical interview for the **Backend Developer** position at **Open Climate Fix (OCF)**.  The codebase demonstrates how I would design, document and deliver a production-ready data pipeline that ingests renewable-generation data from the Elexon BMRS API, stores it locally and exposes it through both a command-line interface and a Streamlit web dashboard.
+
 
 ## Tech Stack
 * **Backend**: Python 3.9+, SQLite, pandas, requests
 * **Visualization**: matplotlib, plotly, streamlit
 * **Web Interface**: Streamlit dashboard with interactive charts
 * **APIs**: Elexon BMRS (Balancing Mechanism Reporting Service)
+
+## Project Structure
+```
+.
+├── ocf_pipeline/          # Core library (configuration, API client, storage, analytics)
+│   ├── config.py
+│   ├── elexon_api.py
+│   ├── elexon_data.py
+│   ├── storage.py
+│   ├── plotting.py
+│   └── streamlit_plotting.py
+├── main.py                # Command-line interface
+├── streamlit_app.py       # Streamlit web dashboard
+├── run.py                 # Convenience launcher
+├── test_elexon_data.py    # Unit tests
+└── docs/                  # Additional documentation
+```
 
 ## Environment
 Duplicate `.env` → `.env.local` if you need custom paths.
@@ -73,16 +92,16 @@ python run.py --install-deps
 ### 🐍 Python API
 ```python
 # Import and analyze data programmatically
-from storage import initialize_db, load_dataframe
-from plotting import plot_generation
-import elexon_data as ed
+from ocf_pipeline.storage import initialize_db, load_dataframe
+from ocf_pipeline.plotting import plot_generation
+from ocf_pipeline import elexon_data as ed
 
 # Import data
 ed.fetch_year(2023)
 
 # Load and visualize
-conn = initialize_db()
-df = load_dataframe(conn)
+auth_conn = initialize_db()
+df = load_dataframe(auth_conn)
 plot_generation(df)
 ```
 
